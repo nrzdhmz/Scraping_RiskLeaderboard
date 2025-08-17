@@ -35,10 +35,10 @@ jobs:
 
       - name: Commit updated CSV
         run: |
-          # Pull the latest changes from the remote before committing and pushing.
-          git pull origin main --rebase
           git add frontend/public/leaderboard.csv
           git commit -m "Update leaderboard.csv [skip ci]" || echo "No changes"
+          # Pull the latest changes from the remote before pushing.
+          git pull origin main --rebase
           git push
 
   deploy:
