@@ -2,8 +2,8 @@ name: Scrape Risk Leaderboard
 
 on:
   schedule:
-    - cron: "0 * * * *"   
-  workflow_dispatch:       
+    - cron: "0 * * * *"   # every hour
+  workflow_dispatch:       # allow manual run
 
 jobs:
   scrape:
@@ -26,11 +26,14 @@ jobs:
       - name: Run scraper
         run: python scraper.py
 
-      - name: Commit updated CSV
+      - name: Configure Git
         run: |
           git config --global user.name "Scraper Bot"
           git config --global user.email "bot@example.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/nrzdhmz/Scraping_RiskLeaderboard.git
+
+      - name: Commit updated CSV
+        run: |
           git add frontend/public/leaderboard.csv
           git commit -m "Update leaderboard.csv [skip ci]" || echo "No changes"
-          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/nrzdhmz/Scraping_RiskLeaderboard.git HEAD:main
-
+          git push origin HEAD:main
