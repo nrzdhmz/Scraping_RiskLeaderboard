@@ -25,29 +25,30 @@ export default function Leaderboard({ data, isLoading }) {
 
   return (
     <div className="leaderboard-container">
-      <LeaderboardHeader
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        toggleFavorites={() => setShowFavoritesOnly(!showFavoritesOnly)}
-        showFavoritesOnly={showFavoritesOnly}
-      />
-
-      {isLoading ? (
-        <div className="loading-message">Loading leaderboard data...</div>
-      ) : (
-        <div className='footer-wrapper'>
+      <div className="header-and-table-wrapper">
+        <LeaderboardHeader
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          toggleFavorites={() => setShowFavoritesOnly(!showFavoritesOnly)}
+          showFavoritesOnly={showFavoritesOnly}
+        />
+        {isLoading ? (
+          <div className="loading-message">Loading leaderboard data...</div>
+        ) : (
           <LeaderboardTable
             players={currentPlayers}
             favorites={favorites}
             toggleFavorite={toggleFavorite}
           />
+        )}
+      </div>
 
-          <Pagination
-            currentPage={currentPage}
-            pageCount={pageCount}
-            onPageChange={setCurrentPage}
-          />
-        </div>
+      {!isLoading && (
+        <Pagination
+          currentPage={currentPage}
+          pageCount={pageCount}
+          onPageChange={setCurrentPage}
+        />
       )}
     </div>
   );

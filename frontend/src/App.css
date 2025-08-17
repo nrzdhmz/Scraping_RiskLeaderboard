@@ -18,15 +18,21 @@ body {
   background-color: #1f2937;
   display: flex; 
   flex-direction: column;
+  justify-content: space-between; 
+}
+
+.header-and-table-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 .leaderboard-header {
   padding: 1.5rem 2rem;
   border-bottom: 1px solid #374151;
-  justify-content: space-between;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
 }
 @media (min-width: 768px) {
@@ -140,7 +146,6 @@ body {
 }
 
 .pagination-controls {
-  margin-top: auto; 
   padding: 1.5rem 2rem;
   display: flex;
   justify-content: center;
@@ -160,21 +165,9 @@ body {
 .pagination-info { color: #9ca3af; }
 
 
-.footer-wrapper{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-footer{
-  display: flex;
-  flex-direction: column;
-}
 .app-footer {
   text-align: center;
   padding: 1rem 0;
   font-size: 0.9rem;
-  bottom: 0;
-  width: 100%;
   border-top: 1px solid #374151;
-  justify-content: center;
 }
