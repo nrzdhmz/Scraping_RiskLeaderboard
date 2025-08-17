@@ -1,4 +1,4 @@
-name: Scrape Risk Leaderboard
+name: Scrape and Deploy
 
 on:
   schedule:
@@ -37,3 +37,33 @@ jobs:
           git add frontend/public/leaderboard.csv
           git commit -m "Update leaderboard.csv [skip ci]" || echo "No changes"
           git push origin HEAD:main
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: scrape   # only runs after scraping finishes
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Build React app
+        run: |
+          cd frontend
+          npm run build
+
+      - name: Deploy to GitHub Pages
+        run: |
+          cd frontend
+          npx gh-pages -d build -u "github-actions-bot <support+actions@github.com>"
