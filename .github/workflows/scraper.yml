@@ -2,12 +2,14 @@ name: Scrape and Deploy
 
 on:
   schedule:
-    - cron: "0 * * * *"   # every hour
-  workflow_dispatch:       # allow manual run
+    - cron: "0 * * * *"  
+  workflow_dispatch:       
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  
 
     steps:
       - name: Checkout repo
@@ -30,13 +32,14 @@ jobs:
         run: |
           git config --global user.name "Scraper Bot"
           git config --global user.email "bot@example.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/nrzdhmz/Scraping_RiskLeaderboard.git
+          # The next line is no longer needed. The job's permissions are used automatically.
+          # git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/nrzdhmz/Scraping_RiskLeaderboard.git
 
       - name: Commit updated CSV
         run: |
           git add frontend/public/leaderboard.csv
           git commit -m "Update leaderboard.csv [skip ci]" || echo "No changes"
-          git push origin HEAD:main
+          git push
 
   deploy:
     runs-on: ubuntu-latest
