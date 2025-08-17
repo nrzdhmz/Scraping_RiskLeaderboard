@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Scraping_RiskLeaderboard/static/css/main.7d8d465d.css",
+    "main.js": "/Scraping_RiskLeaderboard/static/js/main.d8a295ca.js",
+    "index.html": "/Scraping_RiskLeaderboard/index.html",
+    "main.7d8d465d.css.map": "/Scraping_RiskLeaderboard/static/css/main.7d8d465d.css.map",
+    "main.d8a295ca.js.map": "/Scraping_RiskLeaderboard/static/js/main.d8a295ca.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7d8d465d.css",
+    "static/js/main.d8a295ca.js"
+  ]
+}
