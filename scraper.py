@@ -7,14 +7,20 @@ import csv, time, random
 
 def run_scraper():
     options = Options()
+    options.add_argument("--headless=new")  
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
     options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-                        "AppleWebKit/537.36 (KHTML, like Gecko) "
-                        "Chrome/120.0.0.0 Safari/537.36")
+    options.add_argument(
+        "user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36"
+    )
 
     driver = webdriver.Chrome(options=options)
 
+    # mask webdriver flag
     driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {
         "source": "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})"
     })
@@ -22,7 +28,7 @@ def run_scraper():
     driver.get("https://www.hasbrorisk.com/en/leaderboard/2/1/rankPoints")
     wait = WebDriverWait(driver, 10)
 
-    with open("leaderboard.csv", "w", newline="", encoding="utf-8") as f:
+    with open("frontend/public/leaderboard.csv", "w", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(["Rank", "Player", "Profile_Link", "Stat", "Image_URL"])
 
@@ -48,6 +54,7 @@ def run_scraper():
 
                     writer.writerow([rank, player_name, profile_link, stat, img])
 
+            # scroll
             last_height = driver.execute_script("return document.body.scrollHeight")
             for i in range(0, last_height, 400):
                 driver.execute_script(f"window.scrollTo(0, {i});")
@@ -68,7 +75,7 @@ def run_scraper():
                 break
 
     driver.quit()
-    print(" Finished scraping all pages")
+    print("Finished scraping all pages")
 
 
 if __name__ == "__main__":
