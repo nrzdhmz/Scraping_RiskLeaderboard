@@ -8,7 +8,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("./leaderboard.csv")
+    fetch(`${process.env.PUBLIC_URL}/leaderboard.csv`)
       .then(response => response.text())
       .then(csvText => {
         setLeaderboardData(parseCSV(csvText));
@@ -19,7 +19,6 @@ export default function App() {
         setIsLoading(false);
       });
   }, []);
-
 
   return (
     <div className="leaderboard-app">
