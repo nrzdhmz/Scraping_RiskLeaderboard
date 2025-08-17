@@ -64,6 +64,3 @@ This project scrapes the **Risk leaderboard** from [Hasbro Risk](https://www.has
 * GitHub Actions (automation)
 * GitHub Pages (hosting)
 
-## License
-
-This project is open-source and free to use.
