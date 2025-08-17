@@ -159,13 +159,22 @@ body {
 .pagination-button:disabled { opacity: 0.5; cursor: not-allowed; }
 .pagination-info { color: #9ca3af; }
 
+
+.footer-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+footer{
+  display: flex;
+  flex-direction: column;
+}
 .app-footer {
   text-align: center;
-  padding: 1rem;
-  background-color: #f1f1f1;
-  color: #333;
+  padding: 1rem 0;
   font-size: 0.9rem;
-  position: fixed;
   bottom: 0;
   width: 100%;
+  border-top: 1px solid #374151;
+  justify-content: center;
 }
