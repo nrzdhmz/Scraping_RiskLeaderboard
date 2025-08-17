@@ -2,6 +2,7 @@ import { useState } from 'react';
 import LeaderboardHeader from './LeaderboardHeader';
 import LeaderboardTable from './LeaderboardTable';
 import Pagination from './Pagination';
+import Footer from './Footer';
 import useFavorites from '../hooks/useFavorites';
 
 export default function Leaderboard({ data, isLoading }) {
@@ -47,6 +48,7 @@ export default function Leaderboard({ data, isLoading }) {
             pageCount={pageCount}
             onPageChange={setCurrentPage}
           />
+          <Footer/>
         </>
       )}
     </div>
