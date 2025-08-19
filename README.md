@@ -1,6 +1,6 @@
 # Risk Leaderboard Scraper & Viewer
 
-This project scrapes the **Risk leaderboard** from [Hasbro Risk](https://www.hasbrorisk.com/en/leaderboard) and displays it in a React web app. The leaderboard is automatically updated every hour using GitHub Actions, so the data on the website is always fresh.
+This project scrapes the **Risk leaderboard** from [Hasbro Risk]([https://www.hasbrorisk.com/en/leaderboard](https://www.hasbrorisk.com/en/leaderboard/2/1/rankPoints)) and displays it in a React web app. The leaderboard is automatically updated every hour using GitHub Actions, so the data on the website is always fresh.
 
 ## Features
 
